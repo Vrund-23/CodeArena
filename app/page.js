@@ -9,10 +9,14 @@ import {
   Terminal,
   Trophy,
   Users2,
-  Video,
+  Target,
   Zap,
   Timer,
-  Medal
+  Medal,
+  Filter,
+  Layers,
+  Mail,
+  MapPin
 } from 'lucide-react';
 import { getSession } from '@/lib/auth';
 
@@ -40,7 +44,7 @@ export default async function Home() {
                 Talent IQ
               </span>
               <span className="text-[10px] uppercase tracking-widest text-base-content/50 font-semibold">
-                Contest Arena
+                Department Portal
               </span>
             </div>
           </Link>
@@ -79,7 +83,7 @@ export default async function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6">
+      <section className="relative pt-32 pb-12 lg:pt-48 lg:pb-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
@@ -87,7 +91,7 @@ export default async function Home() {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-primary text-sm font-medium animate-fade-in-up hover:border-primary/40 transition-colors cursor-default">
                 <Trophy className="w-4 h-4 fill-current" />
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Global Competitive Platform
+                  Official Department Platform
                 </span>
               </div>
 
@@ -111,7 +115,7 @@ export default async function Home() {
               </h1>
 
               <p className="text-xl text-base-content/60 leading-relaxed max-w-xl">
-                Join the elite community of competitive programmers. Solve challenging algorithms, climb the global leaderboard, and prove your skills in real-time.
+                Sharpen your problem-solving skills, prepare for campus placements, and compete with your batchmates in weekly department challenges.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-4">
@@ -126,7 +130,7 @@ export default async function Home() {
                   <span className="mr-2 bg-white/10 p-1 rounded-full group-hover:bg-white/20 transition-colors">
                     <Globe2 className="w-4 h-4" />
                   </span>
-                  Global Rankings
+                  Dept. Rankings
                 </button>
               </div>
 
@@ -137,7 +141,7 @@ export default async function Home() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-primary" />
-                  <span className="text-sm">Real-time Judging</span>
+                  <span className="text-sm">Internal Mock Tests</span>
                 </div>
               </div>
             </div>
@@ -158,13 +162,15 @@ export default async function Home() {
                     <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                     <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
                     <div className="ml-4 text-xs text-white/30 font-mono">
-                      solution.cpp
+                      lab_test_practice.cpp
                     </div>
                   </div>
                   {/* Editor Content */}
                   <div className="flex-1 p-6 font-mono text-sm relative">
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/50 z-10"></div>
                     <div className="text-pink-400">
+                      <span className="text-white/50">// Practice for upcoming Internal Lab Test</span>
+                      <br />
                       <span className="text-purple-400">#include</span> &lt;bits/stdc++.h&gt;
                       <br />
                       <span className="text-purple-400">using namespace</span> std;
@@ -212,35 +218,10 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-10 border-y border-white/5 bg-white/[0.02]">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { label: "Active Contestants", value: "50k+", icon: Users2 },
-            { label: "Submissions Today", value: "250k+", icon: Code2 },
-            { label: "Daily Contests", value: "10+", icon: Trophy },
-            { label: "Avg User Rating", value: "1200", icon: Medal },
-          ].map((stat, i) => (
-            <div
-              key={i}
-              className="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center group hover:bg-white/5 transition-colors"
-            >
-              <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                <stat.icon className="w-5 h-5" />
-              </div>
-              <div className="text-3xl font-bold text-white mb-1">
-                {stat.value}
-              </div>
-              <div className="text-sm text-base-content/50 font-medium uppercase tracking-wider">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+
 
       {/* Features Grid */}
-      <section className="py-24 px-6 relative">
+      <section className="pt-12 pb-24 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20 max-w-2xl mx-auto">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">
@@ -248,15 +229,15 @@ export default async function Home() {
               <span className="text-gradient-primary">Win</span>
             </h2>
             <p className="text-base-content/60 text-lg">
-              From beginners to Grandmasters, our platform provides the ultimate environment for competitive programming.
+              From first-year basics to final-year interview prep, find the right challenges to level up your skills step-by-step.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Global Contests",
-                desc: "Participate in weekly rated rounds and climb the global ladder.",
+                title: "Department Rankings",
+                desc: "Compete against peers in your year and track your standing on the college leaderboard.",
                 icon: Trophy,
                 gradient: "from-blue-500 to-cyan-500",
               },
@@ -273,15 +254,15 @@ export default async function Home() {
                 gradient: "from-amber-500 to-orange-500",
               },
               {
-                title: "AI Hint System",
-                desc: "Stuck in practice? Get smart hints without spoiling the full solution.",
-                icon: Cpu,
+                title: "Topic-wise Filtering",
+                desc: "Practice specific areas like Arrays, Linked Lists, or Dynamic Programming based on your syllabus.",
+                icon: Filter,
                 gradient: "from-green-500 to-emerald-500",
               },
               {
-                title: "Speed Mode",
-                desc: "Train your typing speed and muscle memory for those last-second submissions.",
-                icon: Timer,
+                title: "Year-Specific Problem Sets",
+                desc: "Access tailored question banks curated specifically for 1st, 2nd, and 3rd-year student difficulty levels.",
+                icon: Layers,
                 gradient: "from-red-500 to-rose-500",
               },
               {
@@ -315,25 +296,33 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="glass-card rounded-[2.5rem] p-12 lg:p-20 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10"></div>
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent opacity-50"></div>
+      {/* Contact Section */}
+      <section className="py-20 px-6 border-t border-white/5 bg-white/[0.02]">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-8">Get in Touch</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="glass-card p-6 rounded-2xl flex flex-col items-center gap-4 hover:bg-white/5 transition-colors group">
+              <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Mail className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-1">Email Us</h3>
+                <a href="mailto:techtriquetra@gmail.com" className="text-base-content/60 hover:text-white transition-colors">
+                  techtriquetra@gmail.com
+                </a>
+              </div>
+            </div>
 
-            <div className="relative z-10">
-              <h2 className="text-4xl lg:text-6xl font-bold text-white mb-8 tracking-tight">
-                Ready to top the leaderboard?
-              </h2>
-              <p className="text-xl text-base-content/70 mb-10 max-w-2xl mx-auto">
-                Join the fastest-growing community of competitive programmers today.
-              </p>
-              <Link href="/signup">
-                <button className="px-10 py-5 rounded-full text-lg shadow-2xl hover:scale-105 transition-transform bg-white text-black font-bold hover:bg-gray-100">
-                  Join the Arena
-                </button>
-              </Link>
+            <div className="glass-card p-6 rounded-2xl flex flex-col items-center gap-4 hover:bg-white/5 transition-colors group">
+              <div className="w-12 h-12 rounded-full bg-secondary/10 text-secondary flex items-center justify-center group-hover:scale-110 transition-transform">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-1">Visit Lab</h3>
+                <p className="text-base-content/60">
+                  F-Block, Computer Dept.<br />BVM Engineering College
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -351,7 +340,7 @@ export default async function Home() {
                 <span className="font-bold text-xl text-white">Talent IQ</span>
               </div>
               <p className="text-base-content/50 text-sm leading-relaxed mb-6">
-                The ultimate platform for competitive programming mastery and algorithm challenges.
+                The official coding platform for the Computer Engineering Department, designed to foster technical growth and coding culture on campus.
               </p>
             </div>
 
@@ -362,11 +351,11 @@ export default async function Home() {
               },
               {
                 title: "Community",
-                links: ["Blog", "Forums", "Discord", "Events"],
+                links: ["Blog", "Student Forum", "Notice Board", "Events"],
               },
               {
                 title: "Legal",
-                links: ["Privacy", "Terms", "Rules", "Status"],
+                links: ["Privacy", "Terms", "Lab Guidelines", "Rules"],
               },
             ].map((col, i) => (
               <div key={i}>
@@ -389,7 +378,7 @@ export default async function Home() {
 
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-sm text-base-content/50">
-              © 2026 Talent IQ Inc. All rights reserved.
+              © 2026 Talent IQ. BVM Engineering College. All rights reserved.
             </div>
             <div className="flex items-center gap-6">
               <a href="#" className="text-base-content/50 hover:text-white transition-colors">
