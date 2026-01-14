@@ -7,7 +7,7 @@ import { Loader2 } from 'lucide-react';
 
 export default function LoginPage() {
     const router = useRouter();
-    const [formData, setFormData] = useState({ email: '', password: '' });
+    const [formData, setFormData] = useState({ email: '', password: '', role: 'student' });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -35,10 +35,16 @@ export default function LoginPage() {
 
             // Success
             // Success
-            if (data.role === 'admin') {
+            // Success
+            const role = data.role || formData.role; // Use server role if available, fallback to selected (though server should be source of truth)
+
+            if (role === 'admin') {
                 router.push('/admin');
+            } else if (role === 'volunteer') {
+                // Assuming volunteers go to dashboard for now, or a specific volunteer page if it existed
+                router.push('/dashboard');
             } else {
-                router.push('/');
+                router.push('/dashboard');
             }
         } catch (err) {
             setError(err.message);
@@ -62,6 +68,25 @@ export default function LoginPage() {
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                        <label className="block text-sm font-medium text-slate-300 mb-2">Select Role</label>
+                        <div className="relative">
+                            <select
+                                name="role"
+                                value={formData.role}
+                                onChange={handleChange}
+                                className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none text-white appearance-none transition-all cursor-pointer"
+                            >
+                                <option value="student">Student</option>
+                                <option value="volunteer">Volunteer</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><path d="m6 9 6 6 6-6" /></svg>
+                            </div>
+                        </div>
+                    </div>
+
                     <div>
                         <label className="block text-sm font-medium text-slate-300 mb-2">College Email or Username</label>
                         <input

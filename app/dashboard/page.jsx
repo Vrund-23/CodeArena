@@ -4,6 +4,7 @@ import LogoutButton from '@/app/components/LogoutButton';
 import dbConnect from '@/lib/db';
 import Submission from '@/models/Submission';
 import StatsSection from '@/app/components/StatsSection';
+import DashboardClient from './DashboardClient';
 import { Zap } from 'lucide-react';
 
 export default async function DashboardPage() {
@@ -68,6 +69,9 @@ export default async function DashboardPage() {
                 </div>
 
                 <StatsSection solvedCount={solvedCount} />
+
+                {/* Unified Dashboard Client for Contests & Volunteer Actions */}
+                <DashboardClient initialRole={sessionUser.role} />
             </main>
         </div>
     );

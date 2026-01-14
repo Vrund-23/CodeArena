@@ -27,7 +27,13 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-black text-white relative overflow-x-hidden selection:bg-primary/20 selection:text-primary">
       {/* Background Grid */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
+      <div
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }}
+      />
 
       {/* Navbar */}
       <nav className="fixed w-full z-50 glass-nav transition-all duration-300">
